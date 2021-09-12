@@ -12,11 +12,7 @@ namespace NTUWebApi.Models
 
         public DateTime CreationTime { get; set; }
 
-        public List<Item> Items { get; set; }
-
-        public int ItemId { get; set; }
-
-        public Item Item { get; set; }
+        public List<OrderItem> OrderItems { get; set; }
 
         public int Sum { get; set; }
 

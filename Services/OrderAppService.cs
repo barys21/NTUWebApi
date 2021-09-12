@@ -38,8 +38,8 @@ namespace NTUWebApi.Services
         {
             using (IDbConnection context = new SqlConnection(connectionString))
             {
-                var sqlQuery = "INSERT INTO Orders (OrderNumber, RegionId , ItemId, Sum) VALUES" +
-                    "(@OrderNumber, @RegionId , @ItemId, @Sum)";
+                var sqlQuery = "INSERT INTO Orders (OrderNumber, CreationTime, Sum) VALUES" +
+                    "(@OrderNumber, @CreationTime, @Sum)";
                 context.Execute(sqlQuery, order);
             }
         }
@@ -48,7 +48,7 @@ namespace NTUWebApi.Services
         {
             using (IDbConnection context = new SqlConnection(connectionString))
             {
-                var sqlQuery = "UPDATE Orders SET OrderNumber = @OrderNumber, RegionId = @RegionId, ItemId = @ItemId, Sum = @Sum";
+                var sqlQuery = "UPDATE Orders SET OrderNumber = @OrderNumber, Sum = @Sum";
                 context.Execute(sqlQuery, order);
             }
         }
