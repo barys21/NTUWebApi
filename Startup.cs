@@ -30,6 +30,11 @@ namespace NTUWebApi
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             string connectionString = "Server=(localdb)\\mssqllocaldb;Database=NTUDb;Trusted_Connection=True;MultipleActiveResultSets=true";
             services.AddTransient<ItemAppService, ItemAppService>(provider => new ItemAppService(connectionString));
+            services.AddTransient<CityAppService, CityAppService>(provider => new CityAppService(connectionString));
+            services.AddTransient<OrderAppService, OrderAppService>(provider => new OrderAppService(connectionString));
+            services.AddTransient<RegionAppService, RegionAppService>(provider => new RegionAppService(connectionString));
+            services.AddTransient<UserAppService, UserAppService>(provider => new UserAppService(connectionString));
+
             services.AddSwaggerGen(options =>
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "Conference Planner API", Version = "v1" }));
         }
