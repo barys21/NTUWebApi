@@ -15,11 +15,6 @@ namespace NTUWebApi.Services
 {
     public class UserAppService
     {
-        // users hardcoded for simplicity, store in a db with hashed passwords in production applications
-        private List<User> _users = new List<User>
-        {
-            new User { Id = 1, FirstName = "kenes", LastName = "kuanyshov", Username = "kenes.kuanyshov", Password = "123qwe*" }
-        };
         const string KEY = "mysupersecret_secretkey!123";
         string connectionString = null;
 
@@ -28,15 +23,13 @@ namespace NTUWebApi.Services
             connectionString = conn;
         }
 
-        
-
         public User Authenticate(string username, string password)
         {
             User user;
 
             using (IDbConnection context = new SqlConnection(connectionString))
             {
-                user = context.Query<User>("SELECT * FROM Users WHERE Username = @username AND Password == password", new {username, password }).SingleOrDefault();
+                user = context.Query<User>("SELECT * FROM Users WHERE Username = @username AND Password = @password", new {username, password }).SingleOrDefault();
             }
 
             // return null if user not found

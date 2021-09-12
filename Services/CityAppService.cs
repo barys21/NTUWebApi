@@ -32,7 +32,7 @@ namespace NTUWebApi.Services
         {
             using (IDbConnection context = new SqlConnection(connectionString))
             {
-                return context.Query<City>("SELECT * FROM Cities WHERE Id = id", new { id }).FirstOrDefault();
+                return context.Query<City>("SELECT * FROM Cities WHERE Id = @id", new { id }).FirstOrDefault();
             }
         }
 
