@@ -39,5 +39,12 @@ namespace NTUWebApi.Controllers
             var users = _userAppService.GetAll();
             return Ok(users);
         }
+
+        [AllowAnonymous]
+        [HttpPost("create")]
+        public void Create(User user)
+        {
+            _userAppService.Create(user);
+        }
     }
 }

@@ -1,8 +1,11 @@
 ﻿
+using Dapper;
 using Microsoft.IdentityModel.Tokens;
 using NTUWebApi.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -17,12 +20,24 @@ namespace NTUWebApi.Services
         {
             new User { Id = 1, FirstName = "kenes", LastName = "kuanyshov", Username = "kenes.kuanyshov", Password = "123qwe*" }
         };
-
         const string KEY = "mysupersecret_secretkey!123";
+        string connectionString = null;
+
+        public UserAppService(string conn)
+        {
+            connectionString = conn;
+        }
+
+        
 
         public User Authenticate(string username, string password)
         {
-            var user = _users.SingleOrDefault(x => x.Username == username && x.Password == password);
+            User user;
+
+            using (IDbConnection context = new SqlConnection(connectionString))
+            {
+                user = context.Query<User>("SELECT * FROM Users WHERE Username = @username AND Password == password", new {username, password }).SingleOrDefault();
+            }
 
             // return null if user not found
             if (user == null)
@@ -49,13 +64,22 @@ namespace NTUWebApi.Services
             return user;
         }
 
-        public IEnumerable<User> GetAll()
+        public List<User> GetAll()
         {
-            // return users without passwords
-            return _users.Select(x => {
-                x.Password = null;
-                return x;
-            });
+            using (IDbConnection context = new SqlConnection(connectionString))
+            {
+                return context.Query<User>("SELECT * FROM Users").ToList();
+            }
+        }
+
+        public void Create(User user)
+        {
+            using (IDbConnection context = new SqlConnection(connectionString))
+            {
+                var sqlQuery = "INSERT INTO Users (FirstName, LastName, Username, Password) VALUES" +
+                               "(@FirstName, @LastName, @Username, @Password)";
+                context.Execute(sqlQuery, user);
+            }
         }
     }
 }

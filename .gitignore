@@ -17,3 +17,5 @@
 /obj/Debug/netcoreapp2.1/NTUWebApi.csproj.CoreCompileInputs.cache
 /obj/Debug/netcoreapp2.1/NTUWebApi.csproj.AssemblyReference.cache
 /obj/Debug/netcoreapp2.1/NTUWebApi.assets.cache
+/bin/Debug/netcoreapp2.1/NTUWebApi.pdb
+/bin/Debug/netcoreapp2.1/NTUWebApi.dll
