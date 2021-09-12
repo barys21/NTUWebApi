@@ -3,3 +3,17 @@
 ################################################################################
 
 /obj/project.nuget.cache
+/obj/project.assets.json
+/obj/NTUWebApi.csproj.nuget.g.targets
+/obj/NTUWebApi.csproj.nuget.g.props
+/obj/NTUWebApi.csproj.nuget.dgspec.json
+/obj/Debug/netcoreapp2.1/NTUWebApi.RazorTargetAssemblyInfo.cache
+/obj/Debug/netcoreapp2.1/NTUWebApi.RazorAssemblyInfo.cs
+/obj/Debug/netcoreapp2.1/NTUWebApi.RazorAssemblyInfo.cache
+/obj/Debug/netcoreapp2.1/NTUWebApi.pdb
+/obj/Debug/netcoreapp2.1/NTUWebApi.genruntimeconfig.cache
+/obj/Debug/netcoreapp2.1/NTUWebApi.dll
+/obj/Debug/netcoreapp2.1/NTUWebApi.csproj.FileListAbsolute.txt
+/obj/Debug/netcoreapp2.1/NTUWebApi.csproj.CoreCompileInputs.cache
+/obj/Debug/netcoreapp2.1/NTUWebApi.csproj.AssemblyReference.cache
+/obj/Debug/netcoreapp2.1/NTUWebApi.assets.cache

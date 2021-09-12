@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Microsoft.AspNetCore.Mvc;
 using NTUWebApi.Models;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace NTUWebApi.Services
 {
+    [Route("api/[AppService]")]
     public class CityAppService
     {
         string connectionString = null;
