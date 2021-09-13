@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace NTUWebApi.Services
 {
-    [Route("api/[AppService]")]
     public class CityAppService
     {
         string connectionString = null;
@@ -49,7 +48,7 @@ namespace NTUWebApi.Services
         {
             using (IDbConnection context = new SqlConnection(connectionString))
             {
-                var sqlQuery = "UPDATE Cities SET Name = @Name";
+                var sqlQuery = "UPDATE Cities SET Name = @Name WHERE Id = @Id";
                 context.Execute(sqlQuery, city);
             }
         }

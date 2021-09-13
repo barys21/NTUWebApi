@@ -9,55 +9,55 @@ using System.Threading.Tasks;
 
 namespace NTUWebApi.Services
 {
-    public class OrderAppService
+    public class OrderItemAppService
     {
         string connectionString = null;
 
-        public OrderAppService(string conn)
+        public OrderItemAppService(string conn)
         {
             connectionString = conn;
         }
 
-        public List<Order> GetAll()
+        public List<OrderItem> GetAll()
         {
             using (IDbConnection context = new SqlConnection(connectionString))
             {
-                return context.Query<Order>("SELECT * FROM Orders").ToList();
+                return context.Query<OrderItem>("SELECT * FROM OrderItems").ToList();
             }
         }
 
-        public Order GetById (int id)
+        public OrderItem GetByOrderId(int id)
         {
             using (IDbConnection context = new SqlConnection(connectionString))
             {
-                return context.Query<Order>("SELECT * FROM Orders WHERE Id = @id", new { id }).FirstOrDefault();
+                return context.Query<OrderItem>("SELECT * FROM OrderItems WHERE OrderId = @id", new { id }).FirstOrDefault();
             }
         }
 
-        public void Create(Order order)
+        public void Create(OrderItem orderItem)
         {
             using (IDbConnection context = new SqlConnection(connectionString))
             {
-                var sqlQuery = "INSERT INTO Orders (OrderNumber, CreationTime, Sum) VALUES" +
-                    "(@OrderNumber, @CreationTime, @Sum)";
-                context.Execute(sqlQuery, order);
+                var sqlQuery = "INSERT INTO OrderItems (OrderId, ItemId) VALUES" +
+                    "(@OrderId, @ItemId)";
+                context.Execute(sqlQuery, orderItem);
             }
         }
 
-        public void Update(Order order)
+        public void UpdateOrderId(OrderItem orderItem)
         {
             using (IDbConnection context = new SqlConnection(connectionString))
             {
-                var sqlQuery = "UPDATE Orders SET OrderNumber = @OrderNumber, Sum = @Sum WHERE Id = @Id";
-                context.Execute(sqlQuery, order);
+                var sqlQuery = "UPDATE OrderItems SET OrderId = @OrderId WHERE ItemId = @ItemId";
+                context.Execute(sqlQuery, orderItem);
             }
         }
 
-        public void Delete(int id)
+        public void DeleteByOrderId(int id)
         {
             using (IDbConnection context = new SqlConnection(connectionString))
             {
-                var sqlQuery = "DELETE FROM Orders WHERE Id = @id";
+                var sqlQuery = "DELETE FROM OrderItems WHERE OrderId = @id";
                 context.Execute(sqlQuery, new { id });
             }
         }
